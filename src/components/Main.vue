@@ -1,28 +1,41 @@
 <template>
   <main class="main-content">
       <div class="container">
-          <h1>Boolflix</h1>
-          <div class="search-bar">
-              <!-- ogni volta che premo invio o clicco il bottone, verrà invocata la funzione "searchYourMovie"  -->
-              <input type="text" id="search-film" placeholder="cerca un film" 
-                v-model="movieTitle" @keyup.enter="searchYourMovie()">
-              <button @click="searchYourMovie()">Cerca il film!</button>
-          </div>
-          <div class="films-list">
-              <ul>
-                  <!-- creo tanti li quanti sono i film dentro l'array moviesList  -->
-                  <li v-for="movie in moviesList" :key="movie.id">
-                        <span>titolo: {{ movie.title }}</span>
-                        <span>titolo originale: {{ movie.original_title }}</span>
-                        <span>lingua:
-                            <figure>
-                                <img :src="movie.original_language" :alt="movie.original_language">
-                            </figure> 
-                        </span>
-                        <span>voto: {{ movie.vote_average }}</span>
-                  </li>
-              </ul>
-          </div>
+            <h1>Boolflix</h1>
+            <div class="search-bar">
+                <!-- ogni volta che premo invio o clicco il bottone, verrà invocata la funzione "searchYourMovie"  -->
+                <input type="text" id="search-film" placeholder="cerca un film" 
+                    v-model="movieTitle" @keyup.enter="searchYourMovie(); searchTv();">
+                <button @click="searchYourMovie(); searchTv();">Cerca il film!</button>
+            </div>
+            <div class="films-list">
+                <h1>Film</h1>
+                <ul>
+                    <!-- creo tanti li quanti sono i film dentro l'array moviesList  -->
+                    <li v-for="movie in moviesList" :key="movie.id">
+                            <span>titolo: {{ movie.title }}</span>
+                            <span>titolo originale: {{ movie.original_title }}</span>
+                            <span>lingua:
+                                <figure>
+                                    <img :src="movie.original_language" :alt="movie.original_language">
+                                </figure> 
+                            </span>
+                            <span>voto: {{ movie.vote_average }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="tv-list">
+                <h1>Serie TV</h1>
+                <ul>
+                    <!-- creo tanti li quanti sono le serie tv dentro l'array moviesList  -->
+                    <li v-for="serie in tvList" :key="serie.id">
+                            <span>titolo: {{ serie.name }}</span>
+                            <span>titolo originale: {{ serie.original_name }}</span>
+                            <span>lingua: {{  serie.original_language }}</span>
+                            <span>voto: {{ serie.vote_average }}</span>
+                    </li>
+                </ul>
+            </div>
       </div>
   </main>
 </template>
@@ -37,6 +50,7 @@ export default {
     data(){
         return{
             moviesList: [],
+            tvList: [],
             movieTitle: '',
         }
     },
@@ -46,6 +60,7 @@ export default {
     },
 
     methods:{
+        //FILM
         searchYourMovie: function(){
             if(this.movieTitle !== ''){
                 //chiamata alle API di the movie db che tramite dei query params mi restituisce determinati film
@@ -64,6 +79,25 @@ export default {
                     })
             }else{
                 this.moviesList = [];
+            }
+            
+        },
+        //SERIE TV
+        searchTv: function(){
+            if(this.movieTitle !== ''){
+                axios.get(`https://api.themoviedb.org/3/search/tv`,{
+                    params:{
+                        api_key: 'dbc2947f78dcb3af56135727bc3212eb',
+                        query: this.movieTitle,
+                        language: 'it-IT',
+                    },
+                })
+                    .then(res => {
+                        //metto l'arrey di oggetti(film), dentro il mio array moviesList
+                        this.tvList = res.data.results; 
+                    })
+            }else{
+                this.tvList = [];
             }
             
         },
