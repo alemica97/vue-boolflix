@@ -3,8 +3,10 @@
       <div class="container">
           <h1>Boolflix</h1>
           <div class="search-bar">
-              <input type="text" id="search-film" placeholder="cerca un film">
-              <button>VAI!</button>
+              <!-- ogni volta che premo invio o clicco il bottone, verrà invocata la funzione "searchYourMovie"  -->
+              <input type="text" id="search-film" placeholder="cerca un film" 
+                v-model="movieTitle" @keyup.enter="searchYourMovie()">
+              <button @click="searchYourMovie()">Cerca il film!</button>
           </div>
           <div class="films-list">
               <ul>
@@ -31,18 +33,25 @@ export default {
     data(){
         return{
             moviesList: [],
+            movieTitle: '',
         }
     },
-    created(){
-        //chiamata alle API di the movie db che tramite dei query params mi restituisce determinati film
-        axios.get('https://api.themoviedb.org/3/search/movie/?api_key=dbc2947f78dcb3af56135727bc3212eb&language=it-IT&query=spiderman')
-            .then(res => {
-                // console.log(res.data.results);
-                //metto l'arrey di oggetti(film), dentro il mio array moviesList
-                this.moviesList = res.data.results; 
-                // console.log(this.moviesList);
-            })
-    }
+    methods:{
+        searchYourMovie: function(){
+            //chiamata alle API di the movie db che tramite dei query params mi restituisce determinati film
+            axios.get(`https://api.themoviedb.org/3/search/movie/?api_key=dbc2947f78dcb3af56135727bc3212eb&language=it-IT&query=${this.movieTitle}`)
+                .then(res => {
+                    // console.log(res.data.results);
+                    //metto l'arrey di oggetti(film), dentro il mio array moviesList
+                    this.moviesList = res.data.results; 
+                    // console.log(this.moviesList);
+                    console.log(this.movieTitle)
+                })
+        },
+        // prova: function(){
+        //     console.log(this.movieTitle)
+        // }
+    },
 }
 </script>
 
