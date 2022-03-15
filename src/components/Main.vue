@@ -8,33 +8,36 @@
                     v-model="movieTitle" @keyup.enter="searchYourMovie(); searchTv();">
                 <button @click="searchYourMovie(); searchTv();">Cerca il film!</button>
             </div>
-            <div class="films-list">
-                <h1>Film</h1>
-                <ul>
-                    <!-- creo tanti li quanti sono i film dentro l'array moviesList  -->
-                    <li v-for="movie in moviesList" :key="movie.id">
-                            <span>titolo: {{ movie.title }}</span>
-                            <span>titolo originale: {{ movie.original_title }}</span>
-                            <span>lingua:
-                                <figure>
-                                    <img :src="movie.original_language" :alt="movie.original_language">
-                                </figure> 
-                            </span>
-                            <span>voto: {{ movie.vote_average }}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="tv-list">
-                <h1>Serie TV</h1>
-                <ul>
-                    <!-- creo tanti li quanti sono le serie tv dentro l'array moviesList  -->
-                    <li v-for="serie in tvList" :key="serie.id">
-                            <span>titolo: {{ serie.name }}</span>
-                            <span>titolo originale: {{ serie.original_name }}</span>
-                            <span>lingua: {{  serie.original_language }}</span>
-                            <span>voto: {{ serie.vote_average }}</span>
-                    </li>
-                </ul>
+
+            <div class="lists-wrapper">
+                <div class="films-list">
+                    <h1>Film</h1>
+                    <ul>
+                        <!-- creo tanti li quanti sono i film dentro l'array moviesList  -->
+                        <li v-for="movie in moviesList" :key="movie.id">
+                                <span>titolo: {{ movie.title }}</span>
+                                <span>titolo originale: {{ movie.original_title }}</span>
+                                <span>lingua:
+                                    <figure>
+                                        <img :src="movie.original_language" :alt="movie.original_language">
+                                    </figure> 
+                                </span>
+                                <span>voto: {{ movie.vote_average }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tv-list">
+                    <h1>Serie TV</h1>
+                    <ul>
+                        <!-- creo tanti li quanti sono le serie tv dentro l'array moviesList  -->
+                        <li v-for="serie in tvList" :key="serie.id">
+                                <span>titolo: {{ serie.name }}</span>
+                                <span>titolo originale: {{ serie.original_name }}</span>
+                                <span>lingua: {{  serie.original_language }}</span>
+                                <span>voto: {{ serie.vote_average }}</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
       </div>
   </main>
@@ -138,5 +141,32 @@ export default {
         & img {
             max-width: 100%;
         }
+    }
+
+    ul,li{
+        list-style-type: none;
+    }
+
+    li{
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    .container{
+        margin: 0 auto;
+        width: 1400px;
+    }
+
+    .films-list h1, .tv-list h1{
+        text-align: center;
+    }
+
+    .lists-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+        text-align: left;
+        margin-top: 30px;
     }
 </style>
