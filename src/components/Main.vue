@@ -61,7 +61,7 @@ export default {
 
     .container{
         margin: 0 auto;
-        width: 1400px;
+        max-width: 1400px;
     }
 
     .films-list h1, .tv-list h1{
