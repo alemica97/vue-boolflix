@@ -1,5 +1,8 @@
 <template>
     <div class="movie-card">
+        <figure>
+            <img :src="posterMovie()" alt="">
+        </figure>
         <span>titolo: {{ currentMovie.title }}</span>
         <span>titolo originale: {{ currentMovie.original_title }}</span>
         <span>lingua: {{ getFlag(currentMovie.original_language) }}</span>
@@ -28,6 +31,10 @@ export default {
     
             return getUnicodeFlagIcon(unicode.toUpperCase());
         },
+        posterMovie: function(){
+            return 'http://image.tmdb.org/t/p/w154'+this.currentMovie.poster_path
+        }
+        
     }
 }
 </script>

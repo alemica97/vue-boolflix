@@ -1,5 +1,8 @@
 <template>
     <div class="tv-card">
+        <figure>
+            <img :src="posterTv()" alt="">
+        </figure>
         <span>titolo: {{ currentTv.name }}</span>
         <span>titolo originale: {{ currentTv.original_name }}</span>
         <span>lingua: {{ getFlag(currentTv.original_language) }}</span>
@@ -28,6 +31,9 @@ export default {
     
             return getUnicodeFlagIcon(unicode.toUpperCase());
         },
+        posterTv: function(){
+            return 'http://image.tmdb.org/t/p/w154'+this.currentTv.poster_path
+        }
     }
 }
 </script>
