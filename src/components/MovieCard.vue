@@ -7,8 +7,8 @@
         <span>titolo originale: {{ currentMovie.original_title }}</span>
         <span>lingua: {{ getFlag(currentMovie.original_language) }}</span>
         <span>
-            <i class="fa-solid fa-star" v-for="(star, i) in stars" :key="i"></i>
-            <i class="fa-regular fa-star" v-for="(notstar, index) in notStars" :key="index"></i>
+            <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
+                v-for="(star, i) in stars" :key="i"></i>
         </span>
     </div>
 </template>
@@ -27,14 +27,14 @@ export default {
     
     data(){
         return{
-            numberStars: undefined,
-            stars: [],
-            notStars: [],
+            stars: [0,1,2,3,4],
         }
     },
 
-    mounted: function(){
-        this.stelle();
+    computed: {
+        roundVote(){
+            return Math.ceil((this.currentMovie.vote_average) * 0.5)
+        }
     },
 
     methods:{
@@ -43,25 +43,11 @@ export default {
             if(unicode == 'en'){
                 unicode = 'gb'
             }
-    
             return getUnicodeFlagIcon(unicode.toUpperCase());
         },
         posterMovie: function(){
             return 'http://image.tmdb.org/t/p/w154'+this.currentMovie.poster_path
-        },
-        stelle: function(){
-            console.log(this.currentMovie.vote_average);
-            this.numberStar = ((this.currentMovie.vote_average) / 2);
-            this.numberStar = Math.ceil(this.numberStar);
-            console.log(this.numberStar);
-            for(let i = 0; i < this.numberStar; i++){
-                this.stars.push(i);
-            }
-            for(let i = this.numberStar; i < 5; i++){
-                this.notStars.push(i);
-            }
-        },
-        
+        },     
     }
 }
 </script>
