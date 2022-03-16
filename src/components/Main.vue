@@ -3,11 +3,17 @@
         <div class="lists-wrapper">
             <h1>Film</h1>
             <div class="films-list">
-                <movieCard v-for="(movie, index) in movieList" :key="index" :currentMovie="movie"/>
+                <movieCard 
+                class="movie-card"
+                v-for="(movie, index) in movieList" 
+                :key="index" :currentMovie="movie"/>
             </div>
             <h1>Serie</h1>
             <div class="tv-list">
-                <tvCard v-for="(tv, i) in propsTvList" :key="i" :currentTv="tv"/>
+                <tvCard 
+                class="tv-card"
+                v-for="(tv, i) in propsTvList" 
+                :key="i" :currentTv="tv"/>
             </div>
         </div>
     </main>
@@ -79,5 +85,9 @@ export default {
         text-align: left;
         margin-top: 30px;
         gap: 50px;
+    }
+
+    .movie-card, .tv-card{
+        width: calc((100% - 80px) / 5);
     }
 </style>

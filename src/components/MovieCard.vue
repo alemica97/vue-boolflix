@@ -6,7 +6,10 @@
         <span>titolo: {{ currentMovie.title }}</span>
         <span>titolo originale: {{ currentMovie.original_title }}</span>
         <span>lingua: {{ getFlag(currentMovie.original_language) }}</span>
-        <span>voto: {{ currentMovie.vote_average }}</span>
+        <span>
+            <i class="fa-solid fa-star" v-for="(star, i) in stars" :key="i"></i>
+            <i class="fa-regular fa-star" v-for="(notstar, index) in notStars" :key="index"></i>
+        </span>
     </div>
 </template>
 
@@ -22,6 +25,18 @@ export default {
         }
     },
     
+    data(){
+        return{
+            numberStars: undefined,
+            stars: [],
+            notStars: [],
+        }
+    },
+
+    mounted: function(){
+        this.stelle();
+    },
+
     methods:{
         getFlag: function(unicode){
 
@@ -33,7 +48,19 @@ export default {
         },
         posterMovie: function(){
             return 'http://image.tmdb.org/t/p/w154'+this.currentMovie.poster_path
-        }
+        },
+        stelle: function(){
+            console.log(this.currentMovie.vote_average);
+            this.numberStar = ((this.currentMovie.vote_average) / 2);
+            this.numberStar = Math.ceil(this.numberStar);
+            console.log(this.numberStar);
+            for(let i = 0; i < this.numberStar; i++){
+                this.stars.push(i);
+            }
+            for(let i = this.numberStar; i < 5; i++){
+                this.notStars.push(i);
+            }
+        },
         
     }
 }
@@ -47,4 +74,9 @@ export default {
         border: 1px solid black;
         padding: 15px;
     }
+
+    .fa-star{
+        color: rgb(255, 208, 0);
+    }
+
 </style>

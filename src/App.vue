@@ -95,4 +95,8 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
+img{
+  width: 100%;
+}
 </style>
