@@ -89,5 +89,6 @@ export default {
 
     .movie-card, .tv-card{
         width: calc((100% - 80px) / 5);
+        min-width: 200px;
     }
 </style>

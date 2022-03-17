@@ -1,20 +1,24 @@
 <template>
     <div class="tv-card">
         <figure>
-            <img :src="posterTv()" alt="">
+            <img :src="posterTv" alt="">
         </figure>
         <span>titolo: {{ currentTv.name }}</span>
         <span>titolo originale: {{ currentTv.original_name }}</span>
-        <span>lingua: {{ getFlag(currentTv.original_language) }}</span>
+        <span v-if="trueFlag(currentTv.original_language)">
+            lingua: {{ getFlag(currentTv.original_language) }}
+        </span>
+        <span v-else>lingua: {{currentTv.original_language}}</span>
         <span>
             <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
-                v-for="(star, i) in stars" :key="i"></i>
+                v-for="(star, i) in 5" :key="i"></i>
         </span>
     </div>
 </template>
 
 <script>
 import getUnicodeFlagIcon from 'country-flag-icons/unicode'
+import { hasFlag } from 'country-flag-icons'
 
 export default {
     name: 'tvCard',
@@ -24,17 +28,19 @@ export default {
             type: Object,
         }
     },
-    
-    data(){
-        return{
-            stars: [0,1,2,3,4],
-        }
-    },
 
     computed: {
-        roundVote(){
+        roundVote: function(){
             return Math.ceil((this.currentTv.vote_average) * 0.5)
-        }   
+        },
+
+        posterTv: function(){
+            if(this.currentTv.poster_path !== null){
+                return 'http://image.tmdb.org/t/p/w185'+this.currentTv.poster_path
+            }else{
+                return 'https://th.bing.com/th/id/OIP.G4dvQDdiYY8L202JaqMbHgHaHa?pid=ImgDet&rs=1'
+            }  
+        },  
     },
 
     methods:{
@@ -46,8 +52,18 @@ export default {
     
             return getUnicodeFlagIcon(unicode.toUpperCase());
         },
-        posterTv: function(){
-            return 'http://image.tmdb.org/t/p/w154'+this.currentTv.poster_path
+
+        trueFlag: function(unicode){
+
+            if(unicode == 'en'){
+                unicode = 'gb'
+            }
+            
+            if(hasFlag(unicode.toUpperCase())){
+                return true
+            }else{
+                return false
+            }
         },
     }
 }
@@ -65,5 +81,8 @@ export default {
 
     .fa-star{
         color: rgb(255, 208, 0);
+    }
+    figure{
+        aspect-ratio: 9/16;
     }
 </style>

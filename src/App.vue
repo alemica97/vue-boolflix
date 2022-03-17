@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     saveTitleFromHeader: function(movieTitle){
-        console.log(movieTitle);
         this.savedTitle = movieTitle;
 
         this.searchYourMovie();
@@ -47,9 +46,8 @@ export default {
                     .then(res => {
                         //metto l'arrey di oggetti(film), dentro il mio array moviesList
                         this.moviesList = res.data.results; 
-                        // console.log(this.moviesList);
-                        console.log(this.savedTitle);
-                        console.log(this.moviesList)
+                        console.log('Hai cercato: ',this.savedTitle);
+                        console.log('Lista dei film: ',this.moviesList)
                     })
             }else{
                 this.moviesList = [];
@@ -69,7 +67,7 @@ export default {
                     .then(res => {
                         //metto l'arrey di oggetti(film), dentro il mio array moviesList
                         this.tvList = res.data.results; 
-                        console.log(this.tvList);
+                        console.log('Lista delle serie tv: ',this.tvList);
                     })
             }else{
                 this.tvList = [];
@@ -81,6 +79,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
