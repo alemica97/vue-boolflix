@@ -1,18 +1,23 @@
 <template>
-    <div class="tv-card">
+    <div class="movie-tv-card">
         <figure>
             <img :src="posterTv" alt="">
         </figure>
-        <span>titolo: {{ currentTv.name }}</span>
-        <span>titolo originale: {{ currentTv.original_name }}</span>
-        <span v-if="trueFlag(currentTv.original_language)">
-            lingua: {{ getFlag(currentTv.original_language) }}
-        </span>
-        <span v-else>lingua: {{currentTv.original_language}}</span>
-        <span>
-            <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
-                v-for="(star, i) in 5" :key="i"></i>
-        </span>
+        <div class="description-wrapper">
+            <div class="card-description">
+                <span>titolo: {{ currentTv.name }}</span>
+                <span>titolo originale: {{ currentTv.original_name }}</span>
+                <span v-if="trueFlag(currentTv.original_language)">
+                    lingua: {{ getFlag(currentTv.original_language) }}
+                </span>
+                <span v-else>lingua: {{currentTv.original_language}}</span>
+                <span>
+                    <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
+                        v-for="(star, i) in 5" :key="i"></i>
+                </span>
+                <p class="overview">overview: {{ currentTv.overview }}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -36,7 +41,7 @@ export default {
 
         posterTv: function(){
             if(this.currentTv.poster_path !== null){
-                return 'http://image.tmdb.org/t/p/w185'+this.currentTv.poster_path
+                return 'http://image.tmdb.org/t/p/w342'+this.currentTv.poster_path
             }else{
                 return 'https://th.bing.com/th/id/OIP.G4dvQDdiYY8L202JaqMbHgHaHa?pid=ImgDet&rs=1'
             }  
@@ -70,16 +75,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    span{
-        display: block;
-    }
-
-    .tv-card{
-        border: 1px solid black;
-        padding: 15px;
-    }
-
-    figure{
-        aspect-ratio: 9/16;
-    }
+    //tutto dentro card.scss
+    @import '../assets/scss/cards.scss';
 </style>

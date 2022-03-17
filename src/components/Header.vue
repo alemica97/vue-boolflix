@@ -9,7 +9,8 @@
                 <img :src="netflixLogo" alt="">
             </figure>
 
-            <div class="search-bar d-flex flex-grow-1 justify-content-center justify-content-md-end">
+            <div class="search-bar
+                d-flex flex-grow-1 justify-content-center justify-content-md-end">
                 <!-- ogni volta che premo invio o clicco il bottone, verrà invocata la funzione "searchYourMovie"  -->
                 <input type="text" id="search-film" placeholder="cerca un film" 
                     v-model="movieTitle" @keyup.enter="$emit('fetchTitle', movieTitle)">

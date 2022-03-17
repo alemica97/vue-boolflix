@@ -1,0 +1,55 @@
+span{
+    display: block;
+}
+
+.movie-tv-card{
+    border: 1px solid black;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+
+    & .description-wrapper{
+        padding: 20px;
+        position: absolute;
+        top:0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.747);
+        transform: translateY(-100%);
+
+        & .card-description{
+            width: 90%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &:hover .description-wrapper{
+        transform: translateY(0);
+        transition: all 700ms;
+    }
+
+    &:hover img{
+        transform: scale(1.2, 1.2);
+        transition: all 1.5s;
+    }
+
+    &:hover .overview{
+        white-space: normal;
+    }
+
+    &img{
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.overview{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+}

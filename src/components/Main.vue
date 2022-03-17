@@ -1,15 +1,15 @@
 <template>
-    <main class="container">
+    <main class="container-fluid px-3">
         <div class="lists-wrapper">
             <h1>Film</h1>
-            <div class="films-list">
+            <div class="films-list row d-flex g-4">
                 <movieCard 
                 class="movie-card"
                 v-for="(movie, index) in movieList" 
                 :key="index" :currentMovie="movie"/>
             </div>
             <h1>Serie</h1>
-            <div class="tv-list">
+            <div class="tv-list row d-flex g-4">
                 <tvCard 
                 class="tv-card"
                 v-for="(tv, i) in propsTvList" 
@@ -49,43 +49,24 @@ export default {
     span{
         display: block;
     }
-
-    ul,li{
-        list-style-type: none;
-    }
-
-    li{
-        border: 1px solid black;
-        padding: 10px;
-    }
-
-    .container{
-        margin: 0 auto;
-        max-width: 1400px;
-    }
-
-    .films-list h1, .tv-list h1{
-        text-align: left;
-    }
-
-    .films-list, .tv-list{
-            display: flex;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+    // .films-list, .tv-list{
+    //         display: flex;
+    //         justify-content: flex-start;
+    //         flex-wrap: wrap;
+    //         gap: 20px;
+    //     }
 
 
-    .lists-wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        text-align: left;
-        margin-top: 30px;
-        gap: 50px;
-    }
+    // .lists-wrapper{
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: space-around;
+    //     align-items: flex-start;
+    //     flex-wrap: wrap;
+    //     text-align: left;
+    //     margin-top: 30px;
+    //     gap: 50px;
+    // }
 
     .movie-card, .tv-card{
         width: calc((100% - 80px) / 5);

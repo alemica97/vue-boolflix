@@ -1,18 +1,24 @@
 <template>
-    <div class="movie-card">
+    <div class="movie-tv-card">
         <figure>
             <img :src="posterMovie" alt="">
         </figure>
-        <span>titolo: {{ currentMovie.title }}</span>
-        <span>titolo originale: {{ currentMovie.original_title }}</span>
-        <span v-if="trueFlag(currentMovie.original_language)">
-            lingua: {{ getFlag(currentMovie.original_language) }}
-        </span>
-        <span v-else>lingua: {{currentMovie.original_language}}</span>
-        <span>
-            <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
-                v-for="(star, i) in 5" :key="i"></i>
-        </span>
+
+        <div class="description-wrapper">
+            <div class="card-description">
+                <span>titolo: {{ currentMovie.title }}</span>
+                <span>titolo originale: {{ currentMovie.original_title }}</span>
+                <span v-if="trueFlag(currentMovie.original_language)">
+                    lingua: {{ getFlag(currentMovie.original_language) }}
+                </span>
+                <span v-else>lingua: {{currentMovie.original_language}}</span>
+                <span>
+                    <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
+                        v-for="(star, i) in 5" :key="i"></i>
+                </span>
+                <p class="overview">overview: {{ currentMovie.overview }}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -36,7 +42,7 @@ export default {
         
         posterMovie: function(){
             if(this.currentMovie.poster_path !== null){
-                return 'http://image.tmdb.org/t/p/w185'+this.currentMovie.poster_path
+                return 'http://image.tmdb.org/t/p/w342'+this.currentMovie.poster_path
             }else{
                 return 'https://th.bing.com/th/id/OIP.G4dvQDdiYY8L202JaqMbHgHaHa?pid=ImgDet&rs=1'
             }  
@@ -70,15 +76,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    span{
-        display: block;
-    }
-    .movie-card{
-        border: 1px solid black;
-        padding: 15px;
-    }
-
-    figure{
-        aspect-ratio: 9/16;
-    }
+    //tutto dentro card.scss
+    @import '../assets/scss/cards.scss';
 </style>
