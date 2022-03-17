@@ -69,17 +69,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     span{
         display: block;
     }
     .movie-card{
         border: 1px solid black;
         padding: 15px;
-    }
-
-    .fa-star{
-        color: rgb(255, 208, 0);
     }
 
     figure{

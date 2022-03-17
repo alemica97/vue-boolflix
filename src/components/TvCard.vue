@@ -69,7 +69,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     span{
         display: block;
     }
@@ -79,9 +79,6 @@ export default {
         padding: 15px;
     }
 
-    .fa-star{
-        color: rgb(255, 208, 0);
-    }
     figure{
         aspect-ratio: 9/16;
     }
