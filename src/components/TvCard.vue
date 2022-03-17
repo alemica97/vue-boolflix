@@ -15,7 +15,12 @@
                     <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
                         v-for="(star, i) in 5" :key="i"></i>
                 </span>
-                <p class="overview">overview: {{ currentTv.overview }}</p>
+                <p v-if="currentTv.overview" class="overview">
+                    overview: {{ currentTv.overview }}
+                </p>
+                <p v-else class="overview">
+                    overview: Questo contenuto non ha una descrizione. 
+                </p>
             </div>
         </div>
     </div>

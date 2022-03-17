@@ -2,16 +2,16 @@
     <main class="container-fluid px-3">
         <div class="lists-wrapper">
             <h1>Film</h1>
-            <div class="films-list row d-flex g-4">
+            <div class="films-list row d-flex justify-content-center g-4">
                 <movieCard 
-                class="movie-card"
+                class="movie-card p-0"
                 v-for="(movie, index) in movieList" 
                 :key="index" :currentMovie="movie"/>
             </div>
             <h1>Serie</h1>
             <div class="tv-list row d-flex g-4">
                 <tvCard 
-                class="tv-card"
+                class="tv-card p-0"
                 v-for="(tv, i) in propsTvList" 
                 :key="i" :currentTv="tv"/>
             </div>
@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    main{
+        background-color: #333;
+    }
+
     span{
         display: block;
     }
