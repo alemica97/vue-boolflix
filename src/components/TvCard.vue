@@ -6,7 +6,9 @@
         <div class="description-wrapper">
             <div class="card-description">
                 <span>titolo: {{ currentTv.name }}</span>
-                <span>titolo originale: {{ currentTv.original_name }}</span>
+                <span v-if="currentTv.original_name !== currentTv.name">
+                    titolo originale: {{ currentTv.original_name }}
+                </span>
                 <span v-if="trueFlag(currentTv.original_language)">
                     lingua: {{ getFlag(currentTv.original_language) }}
                 </span>

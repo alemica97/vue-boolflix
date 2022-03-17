@@ -13,14 +13,13 @@ figure{
 }
 
 .movie-tv-card{
-    border: 1px solid black;
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
 
     & .description-wrapper{
-        padding: 20px;
+        padding: 10px;
         position: absolute;
         top:0;
         right: 0;
@@ -53,11 +52,17 @@ figure{
     }
 }
 
+.overview-wrapper{
+    height: 60px;
+    overflow-y: auto;
+    padding: 0 10px 0 0;
+}
+
 .overview{
-    text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 10px;
 }
+
 
 .fa-star{
     color: rgb(255, 208, 0);

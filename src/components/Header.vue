@@ -5,7 +5,7 @@
             d-flex justify-content-center justify-content-md-between 
             align-items-center flex-wrap">
 
-            <figure class="main-logo mb-3 mx-5 mb-md-0 px-2">
+            <figure class="main-logo mb-4 mx-5 mb-md-0 mx-md-0 px-2 flex-shrink-0">
                 <img :src="netflixLogo" alt="">
             </figure>
 
@@ -41,6 +41,7 @@ export default {
     header{
         background-color: black;
     }
+
     .header{
         padding: 20px 15px;
     }
@@ -56,6 +57,9 @@ export default {
             border-radius: 8px;
             border: none;
             font-size: 15px;
+            background-color: #222;
+            color: #aaa;
+            text-align: center;
         }
 
         & input{
@@ -65,6 +69,22 @@ export default {
         & button{
             cursor: pointer;
             padding: 8px 12px;
+        }
+    }
+
+    @media screen and (max-width: 576px){
+        .search-bar{
+            gap: 10px;
+
+            & input{
+                 padding: 8px 0px;
+            }
+        }
+    }
+
+    @media all and (min-width: 200px){
+        *{
+            transition: all 300ms;
         }
     }
 </style>

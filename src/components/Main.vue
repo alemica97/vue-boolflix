@@ -1,21 +1,25 @@
 <template>
-    <main class="container-fluid px-3">
-        <div class="lists-wrapper">
-            <h1>Film</h1>
-            <div class="films-list row d-flex justify-content-center g-4">
+    <main>
+        <div class="container-lg px-3 d-flex flex-column">
+        <div class="list-wrapper">
+            <h1 class="fs-1 mt-4">Film</h1>
+            <div class="films-list d-flex flex-wrap justify-content-center justify-content-md-start">
                 <movieCard 
-                class="movie-card p-0"
+                class="movie-card"
                 v-for="(movie, index) in movieList" 
                 :key="index" :currentMovie="movie"/>
             </div>
-            <h1>Serie</h1>
-            <div class="tv-list row d-flex g-4">
+        </div>
+        <div class="list-wrapper">
+            <h1 class="fs-1 mt-4">Serie</h1>
+            <div class="tv-list d-flex flex-wrap justify-content-start">
                 <tvCard 
-                class="tv-card p-0"
+                class="tv-card"
                 v-for="(tv, i) in propsTvList" 
                 :key="i" :currentTv="tv"/>
             </div>
-        </div>
+        </div>            
+    </div>
     </main>
 </template>
 
@@ -46,34 +50,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    main{
-        background-color: #333;
+
+    .films-list, .tv-list{
+        padding: 30px;
+        gap: 15px;
     }
 
-    span{
-        display: block;
+    h1{
+        color: #DC1A28;
+        text-align: center;
     }
-    // .films-list, .tv-list{
-    //         display: flex;
-    //         justify-content: flex-start;
-    //         flex-wrap: wrap;
-    //         gap: 20px;
-    //     }
-
-
-    // .lists-wrapper{
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: space-around;
-    //     align-items: flex-start;
-    //     flex-wrap: wrap;
-    //     text-align: left;
-    //     margin-top: 30px;
-    //     gap: 50px;
-    // }
 
     .movie-card, .tv-card{
-        width: calc((100% - 80px) / 5);
+        width: calc((100% - 60px) / 5);
         min-width: 200px;
     }
+
+    //media query
+    @import '../assets/scss/mediaQuery.scss';
 </style>

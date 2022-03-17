@@ -7,7 +7,9 @@
         <div class="description-wrapper">
             <div class="card-description">
                 <span>titolo: {{ currentMovie.title }}</span>
-                <span>titolo originale: {{ currentMovie.original_title }}</span>
+                <span v-if="currentMovie.original_title !== currentMovie.title">
+                    titolo originale: {{ currentMovie.original_title }}
+                </span>
                 <span v-if="trueFlag(currentMovie.original_language)">
                     lingua: {{ getFlag(currentMovie.original_language) }}
                 </span>
@@ -16,12 +18,14 @@
                     <i :class=" roundVote > i ? 'fa-solid fa-star' : 'fa-regular fa-star'"  
                         v-for="(star, i) in 5" :key="i"></i>
                 </span>
-                <p v-if="currentMovie.overview" class="overview">
+                <div class="overview-wrapper">
+                    <p v-if="currentMovie.overview" class="overview">
                     overview: {{ currentMovie.overview }}
-                </p>
-                <p v-else class="overview">
-                    overview: Questo contenuto non ha una descrizione.
-                </p>
+                    </p>
+                    <p v-else class="overview">
+                        overview: Questo contenuto non ha una descrizione.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
