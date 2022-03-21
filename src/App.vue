@@ -2,6 +2,9 @@
   <div id="app">
     <myHeader @fetchTitle="saveTitleFromHeader"/>
     <myMain :movieList="moviesList" :propsTvList='tvList' />
+    <figure v-if="check" class="pulse-logo">
+            <img src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="">    
+    </figure> 
   </div>
 </template>
 
@@ -22,7 +25,8 @@ export default {
     return{
       savedTitle: "",
       moviesList: [],
-      tvList: [],
+      tvList: [], 
+      check: true
     }
   },
   methods: {
@@ -31,6 +35,7 @@ export default {
 
         this.searchYourMovie();
         this.searchTv();
+        this.check = false;
     },
     //FILM
     searchYourMovie: function(){
@@ -84,6 +89,27 @@ export default {
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+
+  .pulse-logo{
+        width: calc(10vw + 50px);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: 2s ease-in-out 500ms infinite pulse;
+    }
+
+    @keyframes pulse{
+        0%{
+            transform: translate(-50%, -50%) scale(1, 1);
+        }
+        50%{
+           transform: translate(-50%, -50%) scale(1.4, 1.4); 
+        }
+        100%{
+            transform: translate(-50%, -50%) scale(1, 1);
+        }
+    }
 }
 
 </style>

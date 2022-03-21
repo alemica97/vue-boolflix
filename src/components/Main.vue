@@ -1,25 +1,25 @@
 <template>
-    <main>
-        <div class="container-lg px-3 d-flex flex-column">
-        <div class="list-wrapper">
-            <h1 class="fs-1 mt-4">Film</h1>
-            <div class="films-list d-flex flex-wrap justify-content-center justify-content-md-start">
-                <movieCard 
-                class="movie-card"
-                v-for="(movie, index) in movieList" 
-                :key="index" :currentMovie="movie"/>
+    <main>  
+        <div class="container-lg px-3 d-flex flex-column">                           
+            <div class="list-wrapper">
+                <h1 v-if="movieList.length != 0" class="mt-4">film</h1>
+                <div class="films-list d-flex flex-wrap justify-content-center justify-content-md-start">
+                    <movieCard 
+                    class="movie-card"
+                    v-for="(movie, index) in movieList" 
+                    :key="index" :currentMovie="movie"/>
+                </div>
             </div>
+            <div class="list-wrapper">
+                <h1 v-if="propsTvList.length != 0" class="mt-4">serie</h1>
+                <div class="tv-list d-flex flex-wrap justify-content-start"> 
+                    <tvCard 
+                    class="tv-card"
+                    v-for="(tv, i) in propsTvList" 
+                    :key="i" :currentTv="tv"/>
+                </div>
+            </div>            
         </div>
-        <div class="list-wrapper">
-            <h1 class="fs-1 mt-4">Serie</h1>
-            <div class="tv-list d-flex flex-wrap justify-content-start">
-                <tvCard 
-                class="tv-card"
-                v-for="(tv, i) in propsTvList" 
-                :key="i" :currentTv="tv"/>
-            </div>
-        </div>            
-    </div>
     </main>
 </template>
 
@@ -51,6 +51,10 @@ export default {
 
 <style lang="scss" scoped>
 
+    .container-lg{
+        padding: 150px 0;
+    }
+
     .films-list, .tv-list{
         padding: 30px;
         gap: 15px;
@@ -59,6 +63,9 @@ export default {
     h1{
         color: #DC1A28;
         text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: rgb(95, 95, 95);
     }
 
     .movie-card, .tv-card{

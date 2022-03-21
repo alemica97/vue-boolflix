@@ -17,7 +17,7 @@
                 <button @click="$emit('fetchTitle', movieTitle)"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
 
-        </div>
+        </div>     <div class="></div>
     </header>
     
 </template>
@@ -39,11 +39,15 @@ export default {
 <style lang="scss" scoped>
 
     header{
-        background-color: black;
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        background: rgb(0,0,0);
+        background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.43379901960784315) 65%, rgba(0,0,0,0) 100%);
     }
 
     .header{
-        padding: 20px 15px;
+        padding: 30px 15px;
     }
 
     .main-logo{
@@ -56,9 +60,11 @@ export default {
         & input, & button{
             border-radius: 8px;
             border: none;
-            font-size: 15px;
-            background-color: #222;
-            color: #aaa;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: rgba(114, 114, 114, 0.253);
+            color: #444;
             text-align: center;
         }
 

@@ -3,13 +3,14 @@
         <figure>
             <img :src="posterMovie" alt="">
         </figure>
-
         <div class="description-wrapper">
             <div class="card-description">
                 <span>titolo: {{ currentMovie.title }}</span>
+                <!-- faccio un controllo, faccio vedere il titolo originale solo se è diverso dal titolo -->
                 <span v-if="currentMovie.original_title !== currentMovie.title">
                     titolo originale: {{ currentMovie.original_title }}
                 </span>
+                <!-- faccio un controllo, se la bandiera è presente la mostro, altrimenti faccio vedere solo la sigla -->
                 <span v-if="trueFlag(currentMovie.original_language)">
                     lingua: {{ getFlag(currentMovie.original_language) }}
                 </span>
