@@ -17,7 +17,7 @@
                 <button @click="$emit('fetchTitle', movieTitle)"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
 
-        </div>     <div class="></div>
+        </div> 
     </header>
     
 </template>
